@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: bun install -G vercel@latest
       - name: Pull env
         run: vercel pull --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build
